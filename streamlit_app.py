@@ -111,7 +111,7 @@ st.line_chart(gr_16,
 st.header('Ao longo do tempo')
 
 # Gerar data frame com os dados
-gr_17 = envios.groupby('Data').agg({'Frete': 'sum', 'Valor previsto': 'sum'}).reset_index()
+gr_17 = envios_filtrados.groupby('Data').agg({'Frete': 'sum', 'Valor previsto': 'sum'}).reset_index()
 
 #Plotar gráfico
 st.line_chart(gr_17,
@@ -123,7 +123,7 @@ st.line_chart(gr_17,
 st.header('Frete Grátis')
 
 # Gerar data frame com os dados
-gr_18 = envios[envios['Frete'] == 0].groupby('Data')['Frete'].value_counts().reset_index()
+gr_18 = envios_filtrados[envios_filtrados['Frete'] == 0].groupby('Data')['Frete'].value_counts().reset_index()
 gr_18.columns = ['Data', 'Frete', 'Quantidade']
 
 #Plotar gráfico
@@ -135,7 +135,7 @@ st.line_chart(gr_18,
 st.header('Distrubuição por UF')
 
 # Gerar data frame com os dados
-gr_19 = envios['UF'].value_counts()
+gr_19 = envios_filtrados['UF'].value_counts()
 
 # Plotar gráfico
 st.bar_chart(gr_19)
@@ -144,7 +144,7 @@ st.bar_chart(gr_19)
 st.header('Frete Médio e Quantidade por UF')
 
 # Gerar data frame com os dados
-gr_20 = envios.pivot_table(index='UF', 
+gr_20 = envios_filtrados.pivot_table(index='UF', 
                            aggfunc={'Frete': 'mean',
                                     'UF': 'size'},
                             values='Frete')
@@ -164,7 +164,7 @@ st.scatter_chart(gr_20,
 st.header('Peso dos Envios')
 
 # Gerar data frame com os dados
-gr_21 = envios['Faixa de Peso'].value_counts()
+gr_21 = envios_filtrados['Faixa de Peso'].value_counts()
 gr_21 = gr_21.dropna()
 
 # Plotar gráfico
