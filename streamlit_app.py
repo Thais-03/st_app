@@ -112,6 +112,7 @@ st.header('Ao longo do tempo')
 
 # Gerar data frame com os dados
 gr_17 = envios_filtrados.groupby('Data').agg({'Frete': 'sum', 'Valor previsto': 'sum'}).reset_index()
+gr_17.columns = ['Data', 'Receita', 'Despesa']
 
 #Plotar gráfico
 st.line_chart(gr_17,
