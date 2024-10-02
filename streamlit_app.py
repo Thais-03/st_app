@@ -117,7 +117,7 @@ gr_17.columns = ['Data', 'Receita', 'Despesa']
 #Plotar gráfico
 st.line_chart(gr_17,
               x='Data',
-              y=['Frete', 'Valor previsto'])
+              y=['Receita', 'Despesa'])
 
 
 # 18 - Gráfico de frete grátis
